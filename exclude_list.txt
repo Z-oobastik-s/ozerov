@@ -1,2 +1,0 @@
-upload_to_github.bat
-.git_temp
