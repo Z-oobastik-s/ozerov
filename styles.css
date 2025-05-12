@@ -585,32 +585,28 @@ footer {
 }
 
 .gallery-container {
-    width: 100%;
-    overflow: hidden;
     position: relative;
-    padding: 2rem 0;
-    margin-bottom: 3rem;
+    width: 100%;
+    margin: 3rem auto;
+    overflow: hidden;
+    max-width: 1200px;
 }
 
 .gallery-slider {
     display: flex;
-    transition: transform 0.5s var(--transition-function);
-    gap: 1.5rem;
-    padding: 1rem 0.5rem;
+    width: 100%;
+    position: relative;
+    transition: transform 0.5s ease;
 }
 
 .gallery-item {
-    min-width: 280px;
-    height: 280px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
     position: relative;
-    transform: translateY(50px);
-    opacity: 0;
-    animation: fadeInUp 0.8s forwards;
-    animation-delay: calc(var(--animation-order) * 0.15s);
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    flex: 1;
 }
 
 .gallery-item:nth-child(1) {

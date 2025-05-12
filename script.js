@@ -204,135 +204,115 @@ document.addEventListener('DOMContentLoaded', function() {
         const galleryNavPrev = document.querySelector('.gallery-nav-btn.prev');
         const galleryNavNext = document.querySelector('.gallery-nav-btn.next');
         
-        let currentSlide = 0;
-        const slidesCount = gallerySlider.children.length;
+        // Настройка галереи для бесконечной прокрутки
+        const initInfiniteGallery = () => {
+            // Получаем все слайды
+            const slides = Array.from(gallerySlider.children);
+            const slidesCount = slides.length;
+            
+            if (slidesCount <= 1) return; // Если слайд только один, ничего не делаем
+            
+            // Клонируем первый и последний слайды
+            const firstSlideClone = slides[0].cloneNode(true);
+            const lastSlideClone = slides[slidesCount - 1].cloneNode(true);
+            
+            // Добавляем клоны в начало и конец
+            gallerySlider.appendChild(firstSlideClone);
+            gallerySlider.insertBefore(lastSlideClone, gallerySlider.firstChild);
+            
+            // Настраиваем стиль для видимости 3 слайдов
+            gallerySlider.style.transform = 'translateX(-100%)';
+            gallerySlider.style.transition = 'transform 0.5s ease';
+            
+            return {
+                slidesCount: slidesCount + 2, // Оригинальные + 2 клона
+                currentIndex: 1 // Начинаем с первого реального слайда (после клона)
+            };
+        };
         
-        // Клонируем элементы для бесконечной прокрутки
-        if (slidesCount > 0) {
-            // Клонируем первые и последние элементы для создания эффекта бесконечности
-            const firstItems = [];
-            const lastItems = [];
-            
-            // Клонируем первые 3 элемента (или меньше, если элементов меньше)
-            for (let i = 0; i < Math.min(3, slidesCount); i++) {
-                const clone = gallerySlider.children[i].cloneNode(true);
-                firstItems.push(clone);
-            }
-            
-            // Клонируем последние 3 элемента (или меньше, если элементов меньше)
-            for (let i = Math.max(0, slidesCount - 3); i < slidesCount; i++) {
-                const clone = gallerySlider.children[i].cloneNode(true);
-                lastItems.push(clone);
-            }
-            
-            // Добавляем клоны в начало и конец слайдера
-            lastItems.forEach(item => {
-                gallerySlider.insertBefore(item, gallerySlider.firstChild);
-            });
-            
-            firstItems.forEach(item => {
-                gallerySlider.appendChild(item);
-            });
-            
-            // Обновляем счетчик слайдов с учетом клонов
-            currentSlide = lastItems.length;
-            
-            // Устанавливаем начальную позицию слайдера
-            setTimeout(() => {
-                const slideWidth = gallerySlider.children[0].offsetWidth;
-                const slideGap = parseInt(window.getComputedStyle(gallerySlider).gap);
-                gallerySlider.style.transition = 'none';
-                gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
-                
-                // Возвращаем анимацию после установки начальной позиции
-                setTimeout(() => {
-                    gallerySlider.style.transition = 'transform 0.5s var(--transition-function)';
-                }, 50);
-            }, 100);
-        }
+        const galleryState = initInfiniteGallery();
         
-        // Функция для прокрутки галереи
-        function scrollGallery(direction) {
-            const totalSlides = gallerySlider.children.length;
-            const slideWidth = gallerySlider.children[0].offsetWidth;
-            const slideGap = parseInt(window.getComputedStyle(gallerySlider).gap);
+        if (!galleryState) return;
+        
+        // Прокрутка галереи
+        const scrollGallery = (direction) => {
+            const slideWidth = 100; // Ширина слайда в процентах
             
             if (direction === 'next') {
-                currentSlide++;
-                
-                // Проверка достижения клона первого слайда
-                if (currentSlide >= totalSlides - Math.min(3, slidesCount)) {
-                    // Анимируем переход к клону
-                    gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
-                    
-                    // После анимации перемещаем к реальному первому слайду без анимации
-                    setTimeout(() => {
-                        currentSlide = lastItems.length;
-                        gallerySlider.style.transition = 'none';
-                        gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
-                        
-                        // Восстанавливаем анимацию
-                        setTimeout(() => {
-                            gallerySlider.style.transition = 'transform 0.5s var(--transition-function)';
-                        }, 50);
-                    }, 500);
-                } else {
-                    // Обычное перемещение вперед
-                    gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
-                }
+                galleryState.currentIndex++;
             } else {
-                currentSlide--;
-                
-                // Проверка достижения клона последнего слайда
-                if (currentSlide < 0) {
-                    // Анимируем переход к клону
-                    gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
-                    
-                    // После анимации перемещаем к реальному последнему слайду без анимации
-                    setTimeout(() => {
-                        currentSlide = totalSlides - lastItems.length - 1;
-                        gallerySlider.style.transition = 'none';
-                        gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
-                        
-                        // Восстанавливаем анимацию
-                        setTimeout(() => {
-                            gallerySlider.style.transition = 'transform 0.5s var(--transition-function)';
-                        }, 50);
-                    }, 500);
-                } else {
-                    // Обычное перемещение назад
-                    gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
-                }
+                galleryState.currentIndex--;
             }
+            
+            // Обновляем позицию слайдера
+            gallerySlider.style.transform = `translateX(-${galleryState.currentIndex * slideWidth}%)`;
+            
+            // Проверяем, достигли ли мы клонов, и если да - переходим без анимации к реальным слайдам
+            gallerySlider.addEventListener('transitionend', function handleTransition() {
+                gallerySlider.removeEventListener('transitionend', handleTransition);
+                
+                // Если дошли до клона первого слайда
+                if (galleryState.currentIndex >= galleryState.slidesCount - 1) {
+                    gallerySlider.style.transition = 'none';
+                    galleryState.currentIndex = 1;
+                    gallerySlider.style.transform = `translateX(-${galleryState.currentIndex * slideWidth}%)`;
+                    
+                    // Возвращаем анимацию
+                    setTimeout(() => {
+                        gallerySlider.style.transition = 'transform 0.5s ease';
+                    }, 10);
+                }
+                
+                // Если дошли до клона последнего слайда
+                if (galleryState.currentIndex <= 0) {
+                    gallerySlider.style.transition = 'none';
+                    galleryState.currentIndex = galleryState.slidesCount - 2;
+                    gallerySlider.style.transform = `translateX(-${galleryState.currentIndex * slideWidth}%)`;
+                    
+                    // Возвращаем анимацию
+                    setTimeout(() => {
+                        gallerySlider.style.transition = 'transform 0.5s ease';
+                    }, 10);
+                }
+            });
+        };
+        
+        // Добавляем обработчики для кнопок
+        if (galleryNavPrev && galleryNavNext) {
+            galleryNavPrev.addEventListener('click', () => scrollGallery('prev'));
+            galleryNavNext.addEventListener('click', () => scrollGallery('next'));
         }
         
-        // Добавляем обработчики
-        if (galleryNavPrev && galleryNavNext) {
-            galleryNavPrev.addEventListener('click', function() {
-                scrollGallery('prev');
-            });
+        // Обновляем стили слайдера для 100% ширины слайдов
+        const updateGalleryStyles = () => {
+            const slides = gallerySlider.children;
             
-            galleryNavNext.addEventListener('click', function() {
-                scrollGallery('next');
+            // Настраиваем контейнер галереи
+            gallerySlider.style.display = 'flex';
+            gallerySlider.style.width = `${slides.length * 100}%`;
+            gallerySlider.style.transform = 'translateX(-100%)'; // Начинаем с первого реального слайда
+            gallerySlider.style.transition = 'transform 0.5s ease';
+            
+            // Настраиваем каждый слайд
+            Array.from(slides).forEach(slide => {
+                slide.style.width = `${100 / slides.length}%`;
+                slide.style.flex = `0 0 ${100 / slides.length}%`;
             });
-        }
+        };
+        
+        // Применяем стили
+        updateGalleryStyles();
         
         // Автоматическая прокрутка галереи
-        const autoScrollInterval = setInterval(function() {
-            scrollGallery('next');
-        }, 5000);
+        let autoScrollInterval = setInterval(() => scrollGallery('next'), 5000);
         
-        // Останавливаем автоскролл при наведении на галерею
-        gallerySlider.addEventListener('mouseenter', function() {
-            clearInterval(autoScrollInterval);
-        });
+        // Остановка автопрокрутки при наведении
+        gallerySlider.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
         
-        // Возобновляем автоскролл при уходе курсора
-        gallerySlider.addEventListener('mouseleave', function() {
+        // Возобновление автопрокрутки при уходе курсора
+        gallerySlider.addEventListener('mouseleave', () => {
             clearInterval(autoScrollInterval);
-            autoScrollInterval = setInterval(function() {
-                scrollGallery('next');
-            }, 5000);
+            autoScrollInterval = setInterval(() => scrollGallery('next'), 5000);
         });
     }
     
