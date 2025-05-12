@@ -207,18 +207,103 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentSlide = 0;
         const slidesCount = gallerySlider.children.length;
         
-        // Функция для прокрутки галереи
-        function scrollGallery(direction) {
-            if (direction === 'next') {
-                currentSlide = (currentSlide + 1) % slidesCount;
-            } else {
-                currentSlide = (currentSlide - 1 + slidesCount) % slidesCount;
+        // Клонируем элементы для бесконечной прокрутки
+        if (slidesCount > 0) {
+            // Клонируем первые и последние элементы для создания эффекта бесконечности
+            const firstItems = [];
+            const lastItems = [];
+            
+            // Клонируем первые 3 элемента (или меньше, если элементов меньше)
+            for (let i = 0; i < Math.min(3, slidesCount); i++) {
+                const clone = gallerySlider.children[i].cloneNode(true);
+                firstItems.push(clone);
             }
             
+            // Клонируем последние 3 элемента (или меньше, если элементов меньше)
+            for (let i = Math.max(0, slidesCount - 3); i < slidesCount; i++) {
+                const clone = gallerySlider.children[i].cloneNode(true);
+                lastItems.push(clone);
+            }
+            
+            // Добавляем клоны в начало и конец слайдера
+            lastItems.forEach(item => {
+                gallerySlider.insertBefore(item, gallerySlider.firstChild);
+            });
+            
+            firstItems.forEach(item => {
+                gallerySlider.appendChild(item);
+            });
+            
+            // Обновляем счетчик слайдов с учетом клонов
+            currentSlide = lastItems.length;
+            
+            // Устанавливаем начальную позицию слайдера
+            setTimeout(() => {
+                const slideWidth = gallerySlider.children[0].offsetWidth;
+                const slideGap = parseInt(window.getComputedStyle(gallerySlider).gap);
+                gallerySlider.style.transition = 'none';
+                gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
+                
+                // Возвращаем анимацию после установки начальной позиции
+                setTimeout(() => {
+                    gallerySlider.style.transition = 'transform 0.5s var(--transition-function)';
+                }, 50);
+            }, 100);
+        }
+        
+        // Функция для прокрутки галереи
+        function scrollGallery(direction) {
+            const totalSlides = gallerySlider.children.length;
             const slideWidth = gallerySlider.children[0].offsetWidth;
             const slideGap = parseInt(window.getComputedStyle(gallerySlider).gap);
             
-            gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
+            if (direction === 'next') {
+                currentSlide++;
+                
+                // Проверка достижения клона первого слайда
+                if (currentSlide >= totalSlides - Math.min(3, slidesCount)) {
+                    // Анимируем переход к клону
+                    gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
+                    
+                    // После анимации перемещаем к реальному первому слайду без анимации
+                    setTimeout(() => {
+                        currentSlide = lastItems.length;
+                        gallerySlider.style.transition = 'none';
+                        gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
+                        
+                        // Восстанавливаем анимацию
+                        setTimeout(() => {
+                            gallerySlider.style.transition = 'transform 0.5s var(--transition-function)';
+                        }, 50);
+                    }, 500);
+                } else {
+                    // Обычное перемещение вперед
+                    gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
+                }
+            } else {
+                currentSlide--;
+                
+                // Проверка достижения клона последнего слайда
+                if (currentSlide < 0) {
+                    // Анимируем переход к клону
+                    gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
+                    
+                    // После анимации перемещаем к реальному последнему слайду без анимации
+                    setTimeout(() => {
+                        currentSlide = totalSlides - lastItems.length - 1;
+                        gallerySlider.style.transition = 'none';
+                        gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
+                        
+                        // Восстанавливаем анимацию
+                        setTimeout(() => {
+                            gallerySlider.style.transition = 'transform 0.5s var(--transition-function)';
+                        }, 50);
+                    }, 500);
+                } else {
+                    // Обычное перемещение назад
+                    gallerySlider.style.transform = `translateX(-${currentSlide * (slideWidth + slideGap)}px)`;
+                }
+            }
         }
         
         // Добавляем обработчики
@@ -233,9 +318,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Автоматическая прокрутка галереи
-        setInterval(function() {
+        const autoScrollInterval = setInterval(function() {
             scrollGallery('next');
         }, 5000);
+        
+        // Останавливаем автоскролл при наведении на галерею
+        gallerySlider.addEventListener('mouseenter', function() {
+            clearInterval(autoScrollInterval);
+        });
+        
+        // Возобновляем автоскролл при уходе курсора
+        gallerySlider.addEventListener('mouseleave', function() {
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = setInterval(function() {
+                scrollGallery('next');
+            }, 5000);
+        });
     }
     
     // ----- Аккордеон на странице информации -----
