@@ -393,29 +393,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ----- Курсорные эффекты -----
+    // ----- Чекбоксы с пакетами услуг -----
     
-    // Создаем элемент для кастомного эффекта курсора
-    const cursor = document.createElement('div');
-    cursor.classList.add('custom-cursor');
-    document.body.appendChild(cursor);
-    
-    // Отслеживаем движение мыши
-    document.addEventListener('mousemove', function(e) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-    
-    // При наведении на кнопки и ссылки добавляем класс для изменения курсора
-    document.querySelectorAll('a, button, .gallery-item, .accordion-header, input, textarea, select, .checkbox-item label').forEach(function(element) {
-        element.addEventListener('mouseenter', function() {
-            cursor.classList.add('cursor-active');
-        });
+    if (document.querySelector('.package-checkboxes')) {
+        const packageCheckboxes = document.querySelectorAll('.package-checkbox');
         
-        element.addEventListener('mouseleave', function() {
-            cursor.classList.remove('cursor-active');
+        packageCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Отключаем другие чекбоксы
+                    packageCheckboxes.forEach(otherCheckbox => {
+                        if (otherCheckbox !== this) {
+                            otherCheckbox.checked = false;
+                            otherCheckbox.disabled = true;
+                        }
+                    });
+                } else {
+                    // Включаем все чекбоксы обратно
+                    packageCheckboxes.forEach(packageCheckbox => {
+                        packageCheckbox.disabled = false;
+                    });
+                }
+            });
         });
-    });
+    }
 });
 
 // ----- Прелоадер -----

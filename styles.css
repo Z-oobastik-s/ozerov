@@ -18,55 +18,17 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif;
     background-color: var(--dark-color);
-    overflow-x: hidden;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     transition: background-color 1s ease;
     opacity: 0;
     animation: fadeBody 1s forwards;
-    cursor: none; /* Скрываем стандартный курсор */
-}
-
-/* Кастомный курсор */
-.custom-cursor {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--accent-color);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    transition: all 0.1s ease;
-    mix-blend-mode: difference;
-}
-
-.custom-cursor::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background-color: var(--accent-color);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.2s ease;
-}
-
-.cursor-active {
-    transform: translate(-50%, -50%) scale(1.5);
-    background-color: rgba(57, 160, 237, 0.2);
-    border-width: 1px;
-}
-
-.cursor-active::after {
-    width: 4px;
-    height: 4px;
 }
 
 /* Прелоадер */
