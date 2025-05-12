@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Озеро Ваканець | Забронировать</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="loader"></div>
+            <div class="loader-text">Загрузка формы...</div>
+        </div>
+    </div>
+
+    <div class="background-container">
+        <div class="overlay"></div>
+    </div>
+    
+    <div class="audio-controls">
+        <button id="sound-toggle" aria-label="Звук вкл/выкл">
+            <span class="icon-sound-on">🔊</span>
+            <span class="icon-sound-off hidden">🔇</span>
+        </button>
+    </div>
+
+    <header>
+        <div class="logo">
+            <h1 class="main-title">Озеро Ваканець</h1>
+            <p class="address">Адрес: G494+88, Михайлівка-Рубежівка, Київська область</p>
+        </div>
+        <nav class="nav-container">
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="fishing.html">Рыбалка</a></li>
+                <li><a href="info.html">Информация</a></li>
+                <li><a href="booking.html" class="active">Забронировать</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="booking-header">
+            <h2>Забронировать услуги</h2>
+            <p>Выберите услуги и заполните форму для бронирования</p>
+        </section>
+
+        <section class="booking-container">
+            <div class="booking-grid">
+                <div class="booking-form-container">
+                    <h3>Форма бронирования</h3>
+                    <form id="booking-form" class="booking-form">
+                        <div class="form-group">
+                            <label for="name">Ваше имя*</label>
+                            <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Телефон*</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Например, +380501234567">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Ваш email (необязательно)">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="date">Дата посещения*</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="time-from">Время с*</label>
+                                <input type="time" id="time-from" name="time-from" required min="05:00" max="22:00">
+                            </div>
+                            
+                            <div class="form-group half">
+                                <label for="time-to">Время до*</label>
+                                <input type="time" id="time-to" name="time-to" required min="05:00" max="23:00">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guests">Количество человек*</label>
+                            <input type="number" id="guests" name="guests" required min="1" max="20" placeholder="Количество человек">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Выберите услуги*</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="fishing" name="services" value="fishing">
+                                    <label for="fishing">Рыбалка (500 грн/день)</label>
+                                </div>
+                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="gazebo" name="services" value="gazebo">
+                                    <label for="gazebo">Беседка (от 500 грн/день)</label>
+                                </div>
+                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="mangal" name="services" value="mangal">
+                                    <label for="mangal">Мангал (200 грн/день)</label>
+                                </div>
+                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="firewood" name="services" value="firewood">
+                                    <label for="firewood">Дрова/уголь (200 грн)</label>
+                                </div>
+                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="boat" name="services" value="boat">
+                                    <label for="boat">Лодка (500 грн/час)</label>
+                                </div>
+                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="quad" name="services" value="quad">
+                                    <label for="quad">Квадроцикл (1000 грн/час)</label>
+                                </div>
+                                
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="package" name="services" value="package">
+                                    <label for="package">Комплексное предложение (от 2000 грн)</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Дополнительная информация</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Напишите дополнительные пожелания или вопросы"></textarea>
+                        </div>
+                        
+                        <div class="form-group terms">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">Я согласен с <a href="#" class="terms-link">правилами</a> посещения озера*</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="submit-button">Забронировать</button>
+                            <button type="reset" class="reset-button">Очистить</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="booking-info">
+                    <div class="info-block">
+                        <h3>Информация о бронировании</h3>
+                        <div class="info-content">
+                            <ul>
+                                <li>После отправки формы мы свяжемся с вами для подтверждения</li>
+                                <li>Бронирование подтверждается после предоплаты 30%</li>
+                                <li>Отмена бронирования за 48 часов – без штрафа</li>
+                                <li>При опоздании более чем на 2 часа, бронь может быть отменена</li>
+                                <li>В высокий сезон (май-сентябрь) рекомендуем бронировать заранее</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-block">
+                        <h3>Свяжитесь с нами</h3>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="contact-icon">📞</div>
+                                <div class="contact-info">
+                                    <h4>Телефон</h4>
+                                    <p>+380636223051</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="contact-icon">⏰</div>
+                                <div class="contact-info">
+                                    <h4>Время работы</h4>
+                                    <p>Ежедневно с 5:00 до 23:00</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="contact-icon">📍</div>
+                                <div class="contact-info">
+                                    <h4>Адрес</h4>
+                                    <p>G494+88, Михайлівка-Рубежівка, Київська область</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div id="booking-success" class="success-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="success-icon">✓</div>
+                <h3>Бронирование отправлено!</h3>
+                <p>Спасибо за ваше бронирование. Мы свяжемся с вами в ближайшее время для подтверждения.</p>
+                <button class="modal-button">Понятно</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Озеро Ваканець</h3>
+                <p>Ваше идеальное место для рыбалки и отдыха</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>Телефон: +380636223051</p>
+                <p>Адрес: G494+88, Михайлівка-Рубежівка, Київська область</p>
+            </div>
+            <div class="footer-section">
+                <h3>Время работы</h3>
+                <p>Ежедневно с 5:00 до 23:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Озеро Ваканець. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <audio id="welcome-sound" src="material/sound/Welcome_to_our_lake_website.mp3" preload="auto"></audio>
+    <audio id="background-music" src="material/sound/background_music.mp3" loop preload="auto"></audio>
+</body>
+</html> 

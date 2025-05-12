@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Озеро Ваканець | Информация</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="loader"></div>
+            <div class="loader-text">Загрузка информации...</div>
+        </div>
+    </div>
+
+    <div class="background-container">
+        <div class="overlay"></div>
+    </div>
+    
+    <div class="audio-controls">
+        <button id="sound-toggle" aria-label="Звук вкл/выкл">
+            <span class="icon-sound-on">🔊</span>
+            <span class="icon-sound-off hidden">🔇</span>
+        </button>
+    </div>
+
+    <header>
+        <div class="logo">
+            <h1 class="main-title">Озеро Ваканець</h1>
+            <p class="address">Адрес: G494+88, Михайлівка-Рубежівка, Київська область</p>
+        </div>
+        <nav class="nav-container">
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="fishing.html">Рыбалка</a></li>
+                <li><a href="info.html" class="active">Информация</a></li>
+                <li><a href="booking.html">Забронировать</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="info-header">
+            <h2>Информация об озере Ваканець</h2>
+            <p>Все, что вам нужно знать о нашем озере</p>
+        </section>
+
+        <section class="info-content">
+            <div class="info-grid">
+                <div class="info-card" data-animation="left">
+                    <div class="card-icon">🌊</div>
+                    <h3>Об озере</h3>
+                    <ul class="info-list">
+                        <li><strong>Размер:</strong> 15 гектаров</li>
+                        <li><strong>Глубина:</strong> до 10 метров</li>
+                        <li><strong>Окружение:</strong> поля, лес, чистый воздух</li>
+                        <li><strong>Время посещения:</strong> с 5:00 до 23:00</li>
+                    </ul>
+                </div>
+
+                <div class="info-card" data-animation="right">
+                    <div class="card-icon">🐟</div>
+                    <h3>Рыба</h3>
+                    <ul class="info-list">
+                        <li><strong>Виды рыб:</strong> карась, линь, короп, щука</li>
+                        <li><strong>Средний вес:</strong> от 2 до 10 кг</li>
+                        <li><strong>Максимальный улов:</strong> без ограничения при дополнительной оплате</li>
+                    </ul>
+                </div>
+
+                <div class="info-card" data-animation="bottom">
+                    <div class="card-icon">📞</div>
+                    <h3>Контакты</h3>
+                    <ul class="info-list">
+                        <li><strong>Телефон:</strong> <a href="tel:+380636223051" class="contact-link">+380636223051</a></li>
+                        <li><strong>Адрес:</strong> G494+88, Михайлівка-Рубежівка, Київська область</li>
+                        <li><strong>Время работы:</strong> Ежедневно с 5:00 до 23:00</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card map-card" data-animation="zoom">
+                    <h3>Расположение</h3>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2536.944418519845!2d30.104828!3d50.5185812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDMxJzA2LjkiTiAzMMKwMDYnMTcuNCJF!5e0!3m2!1sru!2sua!4v1623840000000!5m2!1sru!2sua" 
+                        frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                    <p class="map-hint">Нажмите на карту, чтобы открыть в Google Maps</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="additional-info">
+            <div class="info-accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Правила посещения</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Соблюдайте чистоту и порядок на территории озера</li>
+                            <li>Запрещено оставлять мусор на берегу</li>
+                            <li>Не превышайте допустимое количество снастей без дополнительной оплаты</li>
+                            <li>Соблюдайте временные ограничения пребывания</li>
+                            <li>Бережно относитесь к природе и животным</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Как добраться</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Из Киева можно добраться на автомобиле по трассе в направлении Михайлівка-Рубежівка. Ориентировочное время в пути 40 минут.</p>
+                        <p>Общественным транспортом: от метро Житомирская автобусом №726 до остановки "Михайлівка-Рубежівка", далее пешком около 15 минут.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h3>Что брать с собой</h3>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Рыболовные снасти (или можно арендовать на месте)</li>
+                            <li>Средства от насекомых в теплое время года</li>
+                            <li>Личные вещи и средства гигиены</li>
+                            <li>При желании - продукты для приготовления на мангале</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Озеро Ваканець</h3>
+                <p>Ваше идеальное место для рыбалки и отдыха</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>Телефон: +380636223051</p>
+                <p>Адрес: G494+88, Михайлівка-Рубежівка, Київська область</p>
+            </div>
+            <div class="footer-section">
+                <h3>Время работы</h3>
+                <p>Ежедневно с 5:00 до 23:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Озеро Ваканець. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <audio id="welcome-sound" src="material/sound/Welcome_to_our_lake_website.mp3" preload="auto"></audio>
+    <audio id="background-music" src="material/sound/background_music.mp3" loop preload="auto"></audio>
+</body>
+</html> 

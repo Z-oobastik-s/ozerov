@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Озеро Ваканець | Главная</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="loader"></div>
+            <div class="loader-text">Загрузка...</div>
+        </div>
+    </div>
+    
+    <div class="background-container">
+        <div class="overlay"></div>
+    </div>
+    
+    <div class="audio-controls">
+        <button id="sound-toggle" aria-label="Звук вкл/выкл">
+            <span class="icon-sound-on">🔊</span>
+            <span class="icon-sound-off hidden">🔇</span>
+        </button>
+    </div>
+
+    <header>
+        <div class="logo">
+            <h1 class="main-title">Озеро Ваканець</h1>
+            <p class="address">Адрес: G494+88, Михайлівка-Рубежівка, Київська область</p>
+        </div>
+        <nav class="nav-container">
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="fishing.html">Рыбалка</a></li>
+                <li><a href="info.html">Информация</a></li>
+                <li><a href="booking.html">Забронировать</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title">Добро пожаловать на озеро Ваканець</h2>
+                <p class="hero-subtitle">Уникальное место для отдыха и рыбалки</p>
+                <div class="cta-buttons">
+                    <a href="fishing.html" class="cta-button">Рыбалка</a>
+                    <a href="booking.html" class="cta-button">Забронировать</a>
+                    <a href="gallery.html" class="cta-button">Галерея</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎣</div>
+                <h3>Рыбалка</h3>
+                <p>Великолепные условия для рыбалки с разнообразными видами рыб</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏞️</div>
+                <h3>Природа</h3>
+                <p>Чистый воздух, живописные пейзажи и неповторимая атмосфера</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🍖</div>
+                <h3>Отдых</h3>
+                <p>Беседки, мангалы и всё необходимое для отличного отдыха</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Озеро Ваканець</h3>
+                <p>Ваше идеальное место для рыбалки и отдыха</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>Телефон: +380636223051</p>
+                <p>Адрес: G494+88, Михайлівка-Рубежівка, Київська область</p>
+            </div>
+            <div class="footer-section">
+                <h3>Время работы</h3>
+                <p>Ежедневно с 5:00 до 23:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Озеро Ваканець. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <audio id="welcome-sound" src="material/sound/Welcome_to_our_lake_website.mp3" preload="auto"></audio>
+    <audio id="background-music" src="material/sound/background_music.mp3" loop preload="auto"></audio>
+</body>
+</html> 

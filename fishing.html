@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Озеро Ваканець | Рыбалка</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="loader"></div>
+            <div class="loader-text">Загрузка услуг...</div>
+        </div>
+    </div>
+
+    <div class="background-container">
+        <div class="overlay"></div>
+    </div>
+    
+    <div class="audio-controls">
+        <button id="sound-toggle" aria-label="Звук вкл/выкл">
+            <span class="icon-sound-on">🔊</span>
+            <span class="icon-sound-off hidden">🔇</span>
+        </button>
+    </div>
+
+    <header>
+        <div class="logo">
+            <h1 class="main-title">Озеро Ваканець</h1>
+            <p class="address">Адрес: G494+88, Михайлівка-Рубежівка, Київська область</p>
+        </div>
+        <nav class="nav-container">
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="fishing.html" class="active">Рыбалка</a></li>
+                <li><a href="info.html">Информация</a></li>
+                <li><a href="booking.html">Забронировать</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="fishing-header">
+            <h2>Рыбалка и услуги</h2>
+            <p>Забронируйте все необходимое для идеального отдыха на озере</p>
+        </section>
+
+        <section class="services-container">
+            <h3 class="services-title">Наши услуги</h3>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="material/screenshots of the lake/gallery_1.jpg" alt="Рыбалка">
+                        <div class="service-badge">Популярно</div>
+                    </div>
+                    <div class="service-content">
+                        <h4>Рыбалка</h4>
+                        <div class="service-price">
+                            <span class="price">500 грн</span>
+                            <span class="period">день</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Время: 5:00 - 22:00</li>
+                            <li>Лимит: до 3 кг рыбы</li>
+                            <li>До 3 снастей</li>
+                            <li>Дополнительный кг: оплата по факту</li>
+                            <li>Дополнительная снасть: по договоренности</li>
+                        </ul>
+                        <a href="booking.html" class="service-button">Забронировать</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="material/screenshots of the lake/gallery_2.jpg" alt="Беседка">
+                    </div>
+                    <div class="service-content">
+                        <h4>Аренда беседки</h4>
+                        <div class="service-price">
+                            <span class="price">от 500 грн</span>
+                            <span class="period">день</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>ПН-ЧТ: 500 грн/день</li>
+                            <li>ПТ: 1000 грн/день</li>
+                            <li>СБ-ВС: 1500 грн/день</li>
+                            <li>Вместимость: до 10 человек</li>
+                            <li>Столы и скамейки в комплекте</li>
+                        </ul>
+                        <a href="booking.html" class="service-button">Забронировать</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="material/screenshots of the lake/gallery_3.jpg" alt="Квадроцикл">
+                        <div class="service-badge">Экстрим</div>
+                    </div>
+                    <div class="service-content">
+                        <h4>Прокат квадроцикла</h4>
+                        <div class="service-price">
+                            <span class="price">1000 грн</span>
+                            <span class="period">час</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Мощный квадроцикл</li>
+                            <li>Специальный маршрут</li>
+                            <li>Инструктаж перед поездкой</li>
+                            <li>Защитное снаряжение</li>
+                            <li>Сопровождение инструктора</li>
+                        </ul>
+                        <a href="booking.html" class="service-button">Забронировать</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="material/screenshots of the lake/gallery_4.jpg" alt="Лодка">
+                    </div>
+                    <div class="service-content">
+                        <h4>Прокат лодки</h4>
+                        <div class="service-price">
+                            <span class="price">500 грн</span>
+                            <span class="period">час</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Устойчивая лодка на 2-4 человека</li>
+                            <li>Весла в комплекте</li>
+                            <li>Спасательные жилеты</li>
+                            <li>Идеально для рыбалки</li>
+                            <li>Возможен прокат на весь день</li>
+                        </ul>
+                        <a href="booking.html" class="service-button">Забронировать</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="material/screenshots of the lake/gallery_5.jpg" alt="Мангал">
+                    </div>
+                    <div class="service-content">
+                        <h4>Аренда мангала</h4>
+                        <div class="service-price">
+                            <span class="price">200 грн</span>
+                            <span class="period">день</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Качественный мангал</li>
+                            <li>Решетка и шампуры в комплекте</li>
+                            <li>Щипцы и кочерга</li>
+                            <li>Дрова/уголь: 200 грн отдельно</li>
+                            <li>Доступен при аренде беседки</li>
+                        </ul>
+                        <a href="booking.html" class="service-button">Забронировать</a>
+                    </div>
+                </div>
+                
+                <div class="service-card package-card">
+                    <div class="service-content">
+                        <h4>Комплексное предложение</h4>
+                        <div class="service-price">
+                            <span class="price">от 2000 грн</span>
+                            <span class="period">день</span>
+                        </div>
+                        <ul class="service-features">
+                            <li>Рыбалка на весь день</li>
+                            <li>Беседка (выходной или будний)</li>
+                            <li>Мангал с дровами</li>
+                            <li>Прокат лодки на 1 час</li>
+                            <li>Скидка 15% от суммы отдельных услуг</li>
+                        </ul>
+                        <a href="booking.html" class="service-button">Забронировать</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="fishing-info">
+            <div class="fishing-tips">
+                <h3>Советы для успешной рыбалки</h3>
+                <div class="tips-content">
+                    <p>На нашем озере водятся разные виды рыб, и для каждого из них требуется свой подход:</p>
+                    <ul>
+                        <li><strong>Карась:</strong> Лучше всего ловится на червя или тесто, особенно утром и вечером.</li>
+                        <li><strong>Линь:</strong> Предпочитает червей и мотылей, активен в теплую погоду.</li>
+                        <li><strong>Короп:</strong> Реагирует на бойлы и специальные приманки, особенно эффективна рыбалка на глубине.</li>
+                        <li><strong>Щука:</strong> Хищник, который хорошо ловится на живца или искусственные приманки.</li>
+                    </ul>
+                    
+                    <p>Наиболее удачные часы для рыбалки: ранее утро (5:00-8:00) и вечер (17:00-21:00).</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Озеро Ваканець</h3>
+                <p>Ваше идеальное место для рыбалки и отдыха</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>Телефон: +380636223051</p>
+                <p>Адрес: G494+88, Михайлівка-Рубежівка, Київська область</p>
+            </div>
+            <div class="footer-section">
+                <h3>Время работы</h3>
+                <p>Ежедневно с 5:00 до 23:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Озеро Ваканець. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <audio id="welcome-sound" src="material/sound/Welcome_to_our_lake_website.mp3" preload="auto"></audio>
+    <audio id="background-music" src="material/sound/background_music.mp3" loop preload="auto"></audio>
+</body>
+</html> 
