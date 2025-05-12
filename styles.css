@@ -590,20 +590,24 @@ footer {
     max-width: 1200px;
     margin: 0 auto 3rem;
     overflow: hidden;
+    padding: 0 10px;
 }
 
 .gallery-slider {
     display: flex;
     transition: transform 0.5s ease;
+    width: 100%;
 }
 
 .gallery-item {
     flex: 0 0 100%;
-    height: 400px;
+    height: 300px;
     position: relative;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 0;
+    margin: 0 5px;
 }
 
 .gallery-img {
@@ -611,6 +615,7 @@ footer {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    display: block;
 }
 
 .gallery-item:hover .gallery-img {
@@ -626,21 +631,23 @@ footer {
     width: 100%;
     padding: 0 20px;
     z-index: 10;
+    pointer-events: none;
 }
 
 .gallery-nav-btn {
     background-color: rgba(30, 77, 107, 0.7);
     border: none;
     color: white;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     transition: all 0.3s ease;
+    pointer-events: auto;
 }
 
 .gallery-nav-btn:hover {
@@ -679,6 +686,12 @@ footer {
     .gallery-item {
         flex: 0 0 50%;
         height: 350px;
+    }
+    
+    .gallery-nav-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
     }
 }
 

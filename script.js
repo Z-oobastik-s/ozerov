@@ -221,6 +221,9 @@ document.addEventListener('DOMContentLoaded', function() {
             let currentIndex = 1;
             let isAnimating = false;
             
+            // Расставляем начальные z-индексы для элементов слайдера
+            updateSlideVisibility();
+            
             // Устанавливаем начальную позицию (показываем первый реальный элемент)
             updateSliderPosition();
             
@@ -241,6 +244,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 gallerySlider.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+                
+                // Обновляем видимость слайдов
+                updateSlideVisibility();
+            }
+            
+            // Функция для обновления видимости слайдов
+            function updateSlideVisibility() {
+                const slides = gallerySlider.querySelectorAll('.gallery-item');
+                slides.forEach((slide, index) => {
+                    if (index === currentIndex) {
+                        slide.style.opacity = '1';
+                    } else if (window.innerWidth >= 992 && (index === currentIndex - 1 || index === currentIndex + 1)) {
+                        slide.style.opacity = '1';
+                    } else if (window.innerWidth >= 768 && (index === currentIndex - 1 || index === currentIndex + 1)) {
+                        slide.style.opacity = '1';
+                    } else {
+                        slide.style.opacity = '1'; // Делаем все слайды видимыми
+                    }
+                });
             }
             
             // Обработчик события завершения анимации
@@ -280,6 +302,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateSliderPosition(true);
             }
             
+            // Добавляем свайп-жесты для мобильных устройств
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            gallerySlider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, {passive: true});
+            
+            gallerySlider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, {passive: true});
+            
+            function handleSwipe() {
+                const threshold = 50; // Минимальная дистанция для распознавания свайпа
+                
+                if (touchEndX < touchStartX - threshold) {
+                    // Свайп влево - переход к следующему слайду
+                    goToNextSlide();
+                } else if (touchEndX > touchStartX + threshold) {
+                    // Свайп вправо - переход к предыдущему слайду
+                    goToPrevSlide();
+                }
+            }
+            
             // Обработчики кнопок навигации
             galleryNavNext.addEventListener('click', goToNextSlide);
             galleryNavPrev.addEventListener('click', goToPrevSlide);
@@ -292,11 +339,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearInterval(autoPlayInterval);
             });
             
+            // Остановка автоматического переключения при касании (для мобильных)
+            gallerySlider.addEventListener('touchstart', () => {
+                clearInterval(autoPlayInterval);
+            }, {passive: true});
+            
             // Возобновление автоматического переключения
             gallerySlider.addEventListener('mouseleave', () => {
                 clearInterval(autoPlayInterval);
                 autoPlayInterval = setInterval(goToNextSlide, 5000);
             });
+            
+            // Возобновление автоматического переключения после касания
+            gallerySlider.addEventListener('touchend', () => {
+                clearInterval(autoPlayInterval);
+                autoPlayInterval = setInterval(goToNextSlide, 5000);
+            }, {passive: true});
             
             // Обновление при изменении размера окна
             window.addEventListener('resize', () => {
